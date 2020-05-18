@@ -1,0 +1,79 @@
+<ng-include src="'app/menu.html'"></ng-include>
+<div class="header shadow">
+    <h1><span class="font-weight-bold context-menu"><i class="fas fa-cubes"></i> Lista de imagenes de la prueba {{prueba_id}} <i class="fas fa-file-invoice-dollar"></i></span></h1>
+</div>
+<div class="container" style="max-width: 1700px">
+    <div class="row">
+        <div class="col">
+            <div class="wrapper">
+                <a><button class="btn btn-primary" ng-click="volver()">Volver</button></a>
+                <nav aria-label="Registros por página">
+                    <ul class="pagination float-right">
+                        <li class="page-item" ng-class="{'active':(rppActual==r)}" ng-repeat="r in rppS">
+                            <a class="page-link" href="./imagen/plist/{{r}}/{{ calcPage[$index] }}?prueba={{ prueba_id }}">{{r}}</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div style="margin-left: 700px"><a style="color:white" href="./imagen/new/{{prueba_id}}"><button class="btn btn-primary"> Añadir una imagen</a></button></div>
+                <div class="container">
+                    <div class="row">
+                      <nav style="margin-left: 500px" aria-label="Paginación">
+                        <ul class="pagination">
+                          <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
+                            ng-repeat="p in botonera track by $index">
+                            <a class="page-link" ng-if="p != '...'" href="./?rpp={{ rppActual }}&page={{ p }}?prueba={{ prueba_id }}">{{p}}</a>
+                            <span class="page-link" ng-if="p == '...'">{{ p }}</span>
+                          </li>
+                        </ul>
+                      </nav>
+                      
+                      <div class="col-md-12">
+                        <section ng-show="pagina.length > 0" class="container-posts">
+                         
+                            <div class="col-md-12">
+                              <section style="text-align: center" class="container-posts">
+                                <div class="card" ng-repeat="fila in pagina" style="width:303px">
+                                  <img  style="border-radius: 3px" ng-src="http://localhost:8081//imagenes/{{fila.ubicacion}}">
+                                  <div class="card-body" style="color: black">
+                                    <h3 class="card-title"> {{fila.descripcion}}</h3>
+                                      <p class="card-text">Fecha de realizacion : {{fila.fecha_realizacion }} </p>
+                                      <p class="card-text">Medico : {{fila.id_tecnico_obj.nombre }} {{fila.id_tecnico_obj.primer_apellido }}</p>
+                                      <p class="card-text">Importe : {{fila.fecha_realizacion }} </p>
+                                      
+                                  </div>
+                                </div>
+                              </section>
+                            </div>
+                         
+                  
+                          </div>
+                  
+                        </section>
+                  
+                        <section class="text-center container-posts" ng-show="pagina.length == 0">
+                          <span>No hay imagenes.</span>
+                        </section>
+                      </div>
+                      <br>
+                      <br>
+                      <div style="margin-left: 420px"><a style="color:white" href="./imagen/new/{{prueba_id}}"><button class="btn btn-primary"> Añadir una imagen</a></button></div>
+                      <br>
+                      <br>
+                      <nav aria-label="Paginación" style="margin-left: 470px">
+                        <ul class="pagination" >
+                          <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
+                            ng-repeat="p in botonera track by $index">
+                            <a class="page-link" ng-if="p != '...'" href="./?rpp={{ rppActual }}&page={{ p }}?prueba={{ prueba_id }}">{{p}}</a>
+                            <span class="page-link" ng-if="p == '...'">{{ p }}</span>
+                          </li>
+                          
+                        </ul>
+                      </nav>
+                      
+
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

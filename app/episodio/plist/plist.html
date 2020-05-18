@@ -1,0 +1,181 @@
+<ng-include src="'app/menu.html'"></ng-include>
+<div class="header shadow">
+    <h1><span class="font-weight-bold context-menu"> Lista de episodios del paciente {{user_id}} <i
+                class="fas fa-procedures"></i></span></h1>
+</div>
+<div class="container" style="margin-left: 300px">
+    <div class="row">
+        <div class="col">
+            <div class="wrapper">
+                <a><button class="btn btn-primary" ng-click="volver()">Volver</button></a>
+                <nav aria-label="Registros por página">
+                    <ul class="pagination float-right">
+                        <li class="page-item" ng-class="{'active':(rppActual==r)}" ng-repeat="r in rppS">
+                            <a class="page-link" href="./episodio/plist/{{r}}/{{ calcPage[$index] }}?paciente={{ user_id }}">{{r}}</a>
+                        </li>
+                    </ul>
+                </nav>
+                <nav aria-label="Paginación">
+                    <ul class="pagination">
+                        <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
+                            ng-repeat="p in botonera track by $index">
+                            <a class="page-link" ng-if="p != '...'"
+                                href="./episodio/plist/{{ rppActual }}/{{ p }}?paciente={{ user_id }}">{{p}}</a>
+                            <span class="page-link" ng-if="p == '...'">{{ p }}</span>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <table class="table">
+                    <tr>
+                        <th>Prueba</th>
+                        <div>
+                            <th>Id <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/id/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/id/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                       
+                        <div>
+                            <th>Fecha de firma <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/fecha_firma/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/fecha_firma/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Fecha de inicio <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/fecha_inicio/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/fecha_inicio/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Fecha de alta <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/fecha_alta/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/fecha_alta/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Importe <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/importe/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/importe/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Finalizado <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/finalizado/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/finalizado/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Motivo de ingreso <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/finalizado/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/finalizado/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Recomendaciones <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/recomendaciones/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/recomendaciones/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Tratamiento<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/finalizado/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/finalizado/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Historia actual <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/finalizado/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./episodio/plist/{{ rppActual }}/{{ paginaActual }}/finalizado/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+
+                    </tr>
+                    <tr ng-repeat="episodio in pagina">
+                        <td>
+                            <a ng-if="episodio.link_prueba_informada != 0" class="text-dark"
+                                href="./prueba_informada/plist/10/1?episodio={{ episodio.id }}">{{episodio.link_prueba_informada}}</a>
+                            <span ng-if="episodio.link_prueba_informada == 0">{{episodio.link_prueba_informada}}</span>
+                        </td>
+                        <td>{{episodio.id}}</td>
+                        <td>{{episodio.fecha_firma}}</td>
+                        <td>{{episodio.fecha_inicio}}</td>
+
+                        <td>{{episodio.fecha_alta}}</td>
+                        <td>{{episodio.importe}}</td>
+                        <td>{{episodio.finalizado}}</td>
+                        <td>{{episodio.motivo_ingreso}}</td>
+                        <td>{{episodio.recomendaciones}}</td>
+                        <td>{{episodio.tratamiento_farmacos}}</td>
+                        <td>{{episodio.historia_actual}}</td>   
+                    </tr>
+                </table>
+                <div class="text-center" ng-show="pagina.length == 0">
+                        <span>No hay facturas.</span>
+                </div>
+                <nav aria-label="Paginación">
+                    <ul class="pagination">
+                        <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
+                            ng-repeat="p in botonera track by $index">
+                            <a class="page-link" ng-if="p != '...'"
+                                href="./episodio/plist/{{ rppActual }}/{{ p }}?paciente={{ user_id }}">{{p}}</a>
+                            <span class="page-link" ng-if="p == '...'">{{ p }}</span>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

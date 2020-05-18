@@ -1,0 +1,213 @@
+<ng-include src="'app/menu.html'"></ng-include>
+<div class="header shadow">
+    <h1><span class="font-weight-bold context-menu"><i class="fas fa-heartbeat"></i> Lista de pacientes</span></h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="wrapper">
+
+                <nav aria-label="Registros por página">
+                    <ul class="pagination float-right">
+                        <li class="page-item" ng-class="{'active':(rppActual==r)}" ng-repeat="r in rppS">
+                            <a class="page-link" href="./paciente/plist/{{r}}/{{ calcPage[$index] }}">{{r}}</a>
+                        </li>
+                    </ul>
+                </nav>
+                <nav aria-label="Paginación">
+                    <ul class="pagination">
+                        <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
+                            ng-repeat="p in botonera track by $index">
+                            <a class="page-link" ng-if="p != '...'"
+                                href="./paciente/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
+                            <span class="page-link" ng-if="p == '...'">{{ p }}</span>
+                        </li>
+                    </ul>
+                </nav>
+                <table class="table" style="margin-left: -280px">
+                    <tr>
+                        <div><th>Episodios</th></div>
+                        <div>
+                            <th>Id<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/id/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/id/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+
+                        <div>
+                            <th>Nombre<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/nombre/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/nombre/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>DNI<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/dni/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/dni/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Primer apellido<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/primer_apellido/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/primer_apellido/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Direccion<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/direccion/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/direccion/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Ciudad<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/ciudad/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/ciudad/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Codigo postal<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/codigo_postal/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/codigo_postal/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Email<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/email/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/email/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Teléfono<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/telefono1/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/telefono1/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Fecha de nacimiento<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/fecha_nacimiento/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/fecha_nacimiento/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>SIP<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/fecha_nacimiento/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/fecha_nacimiento/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Tipo de pago<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/id_tipopago/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/id_tipopago/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Sexo<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/id_sexo/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="./paciente/plist/{{ rppActual }}/{{ paginaActual }}/id_sexo/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                    </tr>
+                    <tr ng-repeat="paciente in pagina">
+                        <td>
+                            <a ng-if="paciente.link_episodio != 0" class="text-dark"
+                                href="./episodio/plist/10/1?user={{ paciente.id }}">{{paciente.link_episodio}}</a>
+                            <span ng-if="paciente.link_episodio == 0">{{paciente.link_episodio}}</span>
+                        </td>
+                        <td>{{paciente.id}}</td>
+                        <td>{{paciente.nombre}}</td>
+                        <td>{{paciente.dni}}</td>
+                        <td>{{paciente.primer_apellido}}</td>
+
+
+                        <td>{{paciente.direccion}}</td>
+                        <td>{{paciente.ciudad}}</td>
+                        <td>{{paciente.codigo_postal}}</td>
+                        <td>{{paciente.email}}</td>
+                        <td>{{paciente.telefono1}}</td>
+                        <td>{{paciente.fecha_nacimiento}}</td>
+                        <td>{{paciente.sip_aseguradora}}</a></td>
+                        <td>{{paciente.id_tipopago_obj.descripcion}}</a></td>
+                        <td>{{paciente.id_sexo_obj.descripcion}}</a></td>
+                        
+                    </tr>
+
+                </table>
+                <nav aria-label="Paginación">
+                    <ul class="pagination">
+                        <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
+                            ng-repeat="p in botonera track by $index">
+                            <a class="page-link" ng-if="p != '...'"
+                                href="./paciente/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
+                            <span class="page-link" ng-if="p == '...'">{{ p }}</span>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

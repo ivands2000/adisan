@@ -1,0 +1,216 @@
+<ng-include src="'app/menu.html'"></ng-include>
+<div class="header shadow">
+  <h1><span class="font-weight-bold context-menu"><i class="fas fa-cubes"></i></i> Nueva imagen (prueba {{id}}) <i
+        class="fas fa-plus-square"></i></span></h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form name="imagenForm" ng-show="!fallo&&!hecho">
+        <div class="form-group row">
+          <label for="descripcion" class="col-sm-2 col-form-label">descripcion :</label>
+          <div class="col-sm-10">
+            <input type="text" ng-model="descripcion" class="form-control" min="0" max="999"
+              ng-class="{ 'is-invalid' :!imagenForm.descripcion.$valid && !imagenForm.descripcion.$pristine}"
+              name="descripcion" ng-required="true" />
+            <div class="invalid-feedback" ng-show="imagenForm.descripcion.$invalid">
+              El campo descripcion no es correcto.
+            </div>
+            <div class="invalid-feedback" ng-show="imagenForm.descripcion.$empty">
+              La descripcion no puede estar vacia.
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="fecha_prevista" class="col-sm-2 col-form-label">fecha prevista :</label>
+          <div class="col-sm-10">
+            <md-datepicker ng-model="fecha_prevista" md-placeholder="Enter date" ng-value="fecha_prevista"
+              ng-class="{ 'is-invalid' : !imagenForm.fecha_prevista.$valid && !imagenForm.fecha_prevista.$pristine}"
+              name="fecha_prevista" ng-required="true"></md-datepicker>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="fecha_realizacion" class="col-sm-2 col-form-label">fecha de realizacion </label>
+          <div class="col-sm-10">
+            <md-datepicker ng-model="fecha_realizacion" md-placeholder="Enter date" ng-value="fecha_realizacion"
+              ng-class="{ 'is-invalid' : !imagenForm.fecha_realizacion.$valid && !imagenForm.fecha_realizacion.$pristine}"
+              name="fecha_realizacion" ng-required="true"></md-datepicker>
+          </div>
+        </div>
+
+        <!--catalogo-->
+        <div class="form-group row">
+
+          <catalogo-selection class="modal fade" id="cadd-location-modal" obj="id_catalogo_obj"
+            on-catalogo-set="catalogoRefresh(this,false)">
+          </catalogo-selection>
+
+          <label for="id_catalogo_obj" class="col-sm-2 col-form-label">catalogo:</label>
+
+          <div class="col-sm-10">
+            <div class="control">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" data-toggle="modal" data-target="#cadd-location-modal">
+                    <span class="fas fa-search"></span>
+                  </span>
+                </div>
+
+                <input ng-model="id_catalogo_obj.id" ng-change="catalogoRefresh(this,true)" type="number"
+                  class="form-control" id="id_catalogo_obj" name="id_catalogo_obj" aria-describedby="basic-addon"
+                  placeholder="Seleccione un tecnico"
+                  ng-class="{'is-invalid': !imagenForm.id_catalogo_obj.$valid  && !imagenForm.id_catalogo_obj.$pristine }"
+                  min="1" ng-required="true" ng-value="{{id_catalogo_obj}}"
+                  ng-model-options="{ allowInvalid: true, debounce: 1000, updateOn: 'default'}">
+
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    <a class="text-dark">
+                      <span class="p-2 bd-highlight"><i class="fas fa-users fa-1x"></i></span>
+                      catalogo: {{id_catalogo_obj.id}}
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="invalid-feedback" ng-show="!imagenForm.id_catalogo_obj.$valid">
+                Id de tecnico inválido.
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+
+        <!--dependencia-->
+        <div class="form-group row">
+
+          <dependencia-selection class="modal fade" id="cadd-location-modal3" obj="id_dependencia_obj"
+            on-dependencia-set="dependenciaRefresh(this,false)">
+          </dependencia-selection>
+
+          <label for="id_dependencia_obj" class="col-sm-2 col-form-label">dependencia:</label>
+
+          <div class="col-sm-10">
+            <div class="control">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" data-toggle="modal" data-target="#cadd-location-modal3">
+                    <span class="fas fa-search"></span>
+                  </span>
+                </div>
+
+                <input ng-model="id_dependencia_obj.id" ng-change="dependenciaRefresh(this,true)" type="number"
+                  class="form-control" id="id_dependencia_obj" name="id_dependencia_obj" aria-describedby="basic-addon3"
+                  placeholder="Seleccione un dependencia"
+                  ng-class="{'is-invalid': !imagenForm.id_dependencia_obj.$valid  && !imagenForm.id_dependencia_obj.$pristine }"
+                  min="1" ng-required="true" ng-value="{{id_dependencia}}"
+                  ng-model-options="{ allowInvalid: true, debounce: 1000, updateOn: 'default'}">
+
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    <a class="text-dark">
+                      <span class="p-2 bd-highlight"><i class="fas fa-users fa-1x"></i></span>
+                      dependencia: {{id_dependencia_obj.codigo}}
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="invalid-feedback" ng-show="!imagenForm.id_dependencia_obj.$valid">
+                Id de dependencia inválido.
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="form-group row">
+          <label for="importe" class="col-sm-2 col-form-label">importe:</label>
+          <div class="col-sm-10">
+            <input type="number" ng-model="importe" class="form-control" min="0" max="999"
+              ng-class="{ 'is-invalid' :!imagenForm.importe.$valid && !imagenForm.importe.$pristine}" name="importe"
+              ng-required="true" />
+            <div class="invalid-feedback" ng-show="imagenForm.importe.$invalid">
+              El campo importe no es correcto.
+            </div>
+            <div class="invalid-feedback" ng-show="imagenForm.importe.$empty">
+              La importe no puede estar vacia.
+            </div>
+          </div>
+        </div>
+         <!--tecnico-->
+         <div class="form-group row">
+
+          <tecnico-selection class="modal fade" id="cadd-location-modal4" obj="id_tecnico_obj"
+            on-tecnico-set="tecnicoRefresh(this,false)">
+          </tecnico-selection>
+
+          <label for="id_tecnico_obj" class="col-sm-2 col-form-label">tecnico:</label>
+
+          <div class="col-sm-10">
+            <div class="control">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" data-toggle="modal" data-target="#cadd-location-modal4">
+                    <span class="fas fa-search"></span>
+                  </span>
+                </div>
+
+                <input ng-model="id_tecnico_obj.id" ng-change="tecnicoRefresh(this,true)" type="number"
+                  class="form-control" id="id_tecnico_obj" name="id_tecnico_obj" aria-describedby="basic-addon4"
+                  placeholder="Seleccione un tecnico"
+                  ng-class="{'is-invalid': !imagenForm.id_tecnico_obj.$valid  && !imagenForm.id_tecnico_obj.$pristine }"
+                  min="1" ng-required="true" ng-value="{{id_tecnico_obj}}"
+                  ng-model-options="{ allowInvalid: true, debounce: 1000, updateOn: 'default'}">
+
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    <a class="text-dark">
+                      <span class="p-2 bd-highlight"><i class="fas fa-users fa-1x"></i></span>
+                      tecnico: {{id_tecnico_obj.nombre}} {{id_tecnico_obj.apellido}}
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div class="invalid-feedback" ng-show="!imagenForm.id_tecnico_obj.$valid">
+                Id de tecnico inválido.
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <div>
+          <h3>Imagen de la prueba<h3>
+              <input type="file" file-model="myFile" /><br />
+              <div id="spinner"></div>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <button type="button" class="btn btn-primary" ng-click="new()">Crear
+              imagen</button>
+          </div>
+        </div>
+        <div class="text-center mt-3" ng-show="botones">
+          <button type="button" class="btn btn-primary mt-2 mx-2" ng-disabled="!imagenForm.$valid"
+            ng-click="new()">Crear imagen</button>
+          <button type="button" class="btn btn-danger mt-2 mx-2" ng-click="volver()">Volver atrás</button>
+        </div>
+      </form>
+      <div ng-show="!fallo&&hecho">
+        <div class="alert alert-success text-center" role="alert">
+          <h2>Se ha añadido una imagen a la prueba {{id}}.</h2>
+          <button class="btn btn-primary" ng-click="volver()">Volver</button>
+        </div>
+      </div>
+      <div ng-show="fallo&&!hecho">
+        <div class="alert alert-danger text-center" role="alert">
+          <h2>Ha ocurrido un error al añadir una nueva imagen  a la prueba {{id}} </h2>
+          <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
+          <button class="btn btn-primary" ng-click="volver()">Volver</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

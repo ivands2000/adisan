@@ -1,0 +1,107 @@
+<ng-include src="'app/menu.html'"></ng-include>
+<div class="header shadow">
+    <h1><span class="font-weight-bold context-menu"><i class="fas fa-cubes"></i></i> Nueva prueba para el episodio {{id}}<i class="fas fa-plus-square"></i></span></h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form name="PiForm" ng-show="!fallo&&!hecho">
+                <div class="form-group row">
+                    <label for="informe" class="col-sm-2 col-form-label">informe :</label>
+                    <div class="col-sm-10">
+                        <textarea ng-model="informe" class="form-control" min="0" max="999"
+                            ng-class="{ 'is-invalid' :!PiForm.informe.$valid && !PiForm.informe.$pristine}"
+                            name="informe" ng-required="true" ></textarea></p>
+                        <div class="invalid-feedback" ng-show="PiForm.informe.$invalid">
+                            El campo informe no es correcto.
+                        </div>
+                        <div class="invalid-feedback" ng-show="PiForm.informe.$empty">
+                            La informe no puede estar vacia.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="fecha_peticion" class="col-sm-2 col-form-label">fecha de peticion :</label>
+                    <div class="col-sm-10">
+                        <md-datepicker ng-model="fecha_peticion" md-placeholder="Enter date" ng-value="fecha_peticion"
+                            ng-class="{ 'is-invalid' : !PiForm.fecha_peticion.$valid && !PiForm.fecha_peticion.$pristine}"
+                            name="fecha_peticion" ng-required="true"></md-datepicker>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="importe" class="col-sm-2 col-form-label">importe :</label>
+                    <div class="col-sm-10">
+                      <input type="text" ng-model="importe" class="form-control" min="0" max="999"
+                        ng-class="{ 'is-invalid' :!PiForm.importe.$valid && !PiForm.importe.$pristine}"
+                        name="importe" ng-required="true" />
+                      <div class="invalid-feedback" ng-show="PiForm.importe.$invalid">
+                        El campo importe no es correcto.
+                      </div>
+                      <div class="invalid-feedback" ng-show="PiForm.importe.$empty">
+                        La importe no puede estar vacia.
+                      </div>
+                    </div>
+                </div>
+                <!--medico-->
+                <div class="form-group row">
+
+                    <medico-selection class="modal fade" id="cadd-location-modal2" obj="id_medico_obj"
+                      on-medico-set="medicoRefresh(this,false)">
+                    </medico-selection>
+          
+                    <label for="id_medico_obj" class="col-sm-2 col-form-label">medico:</label>
+          
+                    <div class="col-sm-10">
+                      <div class="control">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" data-toggle="modal" data-target="#cadd-location-modal2">
+                              <span class="fas fa-search"></span>
+                            </span>
+                          </div>
+          
+                          <input ng-model="id_medico_obj.id" ng-change="medicoRefresh(this,true)" type="number"
+                            class="form-control" id="id_medico_obj" name="id_medico_obj" aria-describedby="basic-addon"
+                            placeholder="Seleccione un tecnico"
+                            ng-class="{'is-invalid': !PiForm.id_medico_obj.$valid  && !PiForm.id_medico_obj.$pristine }" min="1"
+                            ng-required="true" ng-value="{{id_medico_obj}}"
+                            ng-model-options="{ allowInvalid: true, debounce: 1000, updateOn: 'default'}">
+          
+                          <div class="input-group-append">
+                            <span class="input-group-text">
+                              <a class="text-dark">
+                                <span class="p-2 bd-highlight"><i class="fas fa-users fa-1x"></i></span>
+                                medico: {{id_medico_obj.nombre}} {{id_medico_obj.primer_apelido}}
+                              </a>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="invalid-feedback" ng-show="!PiForm.id_tecnico_obj.$valid">
+                          Id de medico inválido.
+                        </div>
+                      </div>
+                    </div>       
+                </div> 
+                <div class="text-center mt-3" ng-show="botones">
+                    <button type="button" class="btn btn-primary mt-2 mx-2" 
+                        ng-click="new()">Crear imagen</button>
+                    <button type="button" class="btn btn-danger mt-2 mx-2" ng-click="volver()">Volver atrás</button>
+                </div>
+            </form>
+            <div ng-show="!fallo&&hecho">
+                <div class="alert alert-success text-center" role="alert">
+                    <h2>Se ha añadido una prueba al episodio {{ id }}.</h2>
+                    <button class="btn btn-primary" ng-click="volver()">Volver</button>
+                </div>
+            </div>
+            <div ng-show="fallo&&!hecho">
+                <div class="alert alert-danger text-center" role="alert">
+                    <h2>Ha ocurrido un error al añadir una nueva prueba al episodio {{ id }}.</h2>
+                    <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
+                    <button class="btn btn-primary" ng-click="volver()">Volver</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

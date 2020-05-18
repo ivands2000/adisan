@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="AdisanApp">
+
+<head>
+  <base href="/adisan-client/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Adisan</title>
+  <!--favicon-->
+  <link rel="shortcut icon" href="favicon.jpg" type="image/x-icon" />
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-route.min.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <!-- calendar -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/es.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-messages.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
+  <!-- fin de calendar -->
+  <link href="https://fonts.googleapis.com/css?family=Mukta&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="vendor/angular-css.min.js"></script>
+  <script src="vendor/foge-sha256.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/animated.css" />
+  
+  <!--App-->
+  <script src="config/module.js"></script>
+  <script src="config/config.js"></script>
+  <script src="config/filter.js"></script>
+  <script src="config/promesasService.js"></script>
+  <script src="config/routes.js"></script>
+ 
+<!-- prueba_informada -->
+<script src="app/prueba_informada/remove/remove.js"></script>
+<script src="app/prueba_informada/plist/plist.js"></script>
+<script src="app/prueba_informada/new/new.js"></script>
+<script src="app/prueba_informada/selection.js"></script>
+<!-- episodio -->
+<script src="app/episodio/plist/plist.js"></script>
+<script src="app/episodio/selection.js"></script>
+<!-- imagen -->
+<script src="app/imagen/remove/remove.js"></script>
+<script src="app/imagen/plist/plist.js"></script>
+<script src="app/imagen/new/new.js"></script>
+<!-- medico -->
+<script src="app/medico/selection.js"></script>
+<!-- tecnico -->
+<script src="app/tecnico/selection.js"></script>
+<!-- dependencia -->
+<script src="app/dependencia/selection.js"></script>
+<!-- catalogoimagenes -->
+<script src="app/catalogoimagenes/selection.js"></script>
+  <!-- usuario -->
+  <script src="app/usuario/plist/plist.js"></script>
+  <script src="app/usuario/remove/remove.js"></script>
+  <script src="app/usuario/view/view.js"></script>
+  <script src="app/usuario/edit/edit.js"></script>
+  <script src="app/usuario/new/new.js"></script>
+  <script src="app/usuario/fill/fill.js"></script>
+  <script src="app/usuario/login/login.js"></script>
+  <script src="app/usuario/logout/logout.js"></script>
+  <script src="app/usuario/login-validate/login-validate.js"></script>
+  <script src="app/usuario/selection.js"></script>
+  <script src="app/usuario/signup/signup.js"></script>
+  <script src="app/usuario/recover/recover.js"></script>
+  <script src="app/usuario/recover/password/password.js"></script>
+  <!-- tipo_usuario-->
+  <script src="app/tipousuario/plist/plist.js"></script>  
+  <script src="app/tipousuario/view/view.js"></script>
+  <script src="app/tipousuario/edit/edit.js"></script>
+  <!-- paciente -->
+  <script src="app/paciente/plist/plist.js"></script>
+
+
+
+</head>
+
+<body>
+  <div ng-view></div>
+</body>
+
+</html>
